@@ -1,19 +1,24 @@
-import { HttpClient } from '@angular/common/http';
+// src/app/services/github.service.ts
 import { Injectable } from '@angular/core';
-import { tap, throwError } from 'rxjs';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class GithubService {
+  private baseUrl: string = 'https://api.github.com/users';
 
-  constructor(
-    private httpClient: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
-  getUser(githubUsername: string) {
-    return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);
+  getUserData(username: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${username}`);
   }
 
-  // implement getRepos method by referring to the documentation. Add proper types for the return type and params 
+  getRepos(username: string): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'Accept': 'application/vnd.github.mercy-preview+json' // Header for enabling topics
+    });
+    return this.http.get<any[]>(`${this.baseUrl}/${username}/repos`, { headers });
+  }
 }

@@ -1,0 +1,11 @@
+<div class="repo-list">
+    <div *ngFor="let repo of repos" class="repo-card">
+      <h3><a [href]="repo.html_url" target="_blank">{{ repo.name }}</a></h3>
+      <p>{{ repo.description }}</p>
+      <div *ngIf="repo.language || repo.topics.length" class="tech-stack">
+        <span *ngIf="repo.language" class="tech-item">{{ repo.language }}</span>
+        <span *ngFor="let topic of repo.topics" class="tech-item">{{ topic }}</span>
+      </div>
+    </div>
+  </div>
+  

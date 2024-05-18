@@ -1,0 +1,17 @@
+<div class="user-profile">
+    <div class="profile-container">
+      <img [src]="user.avatar_url" alt="User Avatar" class="avatar">
+      <div class="profile-details">
+        <h2>{{ user.name }}</h2>
+        <p>{{ user.bio }}</p>
+        <p><i class="fas fa-map-marker-alt"></i> {{ user.location }}</p>
+        <p>
+          <a [href]="user.html_url" target="_blank"><i class="fab fa-github"></i> {{ user.html_url }}</a>
+        </p>
+        <p *ngIf="user.twitter_username">
+          Twitter: <a [href]="'https://twitter.com/' + user.twitter_username" target="_blank">@{{ user.twitter_username }}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  
