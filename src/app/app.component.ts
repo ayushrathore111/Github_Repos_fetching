@@ -9,6 +9,7 @@ import { GithubService } from './services/api.service';
 
 
 export class AppComponent {
+  title = 'fyle-frontend-challenge'; // Define the title property
   user: any;
   repos: any[] = [];
   username: string = '';
